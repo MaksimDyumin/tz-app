@@ -1,54 +1,38 @@
-import { BASE_URL } from "@/config";
-import { publickClient } from "@/axiosInstances/publickClient";
+/* eslint quotes: ["warn", "single"] */
+
+import { publickClient } from '@/axiosInstances/publickClient'
 
 
-export const namespaced = true;
+export const namespaced = true
 
 export const state = {
   users: null,
-  userOnCurrentPage: null,
+  userOnCurrentPage: null
 }
 
 export const getters = {
   users(state) {
-    return state.users;
+    return state.users
   },
   userOnCurrentPage(state) {
-    return state.userCurrentPage;
-  },
+    return state.userCurrentPage
+  }
 }
 
 export const mutations = {
-  SET_USERS(state, isShow) {
-    state.isShow = isShow;
+  SET_USERS(state, users) {
+    state.users = users
   },
   SET_USER_ON_CURRENT_PAGE(state, data) {
-    state.data = data;
-  },
+    state.data = data
+  }
 }
 
 export const actions = {
-  async getUsers({ commit }, data) {
+  async getUsers({ commit }, userId) {
     try {
-      const response = await publickClient.get(`users/`)
-      commit('SET_USERS', response.data)
-    } catch (error) {
-      console.error(error)
-      // this._vm.$toast.error(error?.response?.data?.detail);
-    }
-  },
-  async getUserPosts({ commit }, ) {
-    try {
-      const response = await publickClient.get(`users/`)
-      commit('SET_USERS', response.data)
-    } catch (error) {
-      console.error(error)
-      // this._vm.$toast.error(error?.response?.data?.detail);
-    }
-  },
-  async getUserAlbums({ commit }) {
-    try {
-      const response = await publickClient.get(`users/`)
+      const optionalString = userId || ''
+      const response = await publickClient.get(`users/${optionalString}`)
       commit('SET_USERS', response.data)
     } catch (error) {
       console.error(error)
