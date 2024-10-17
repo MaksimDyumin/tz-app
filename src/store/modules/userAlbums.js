@@ -32,13 +32,13 @@ export const actions = {
   async getUserAlbums({ commit }, userId) {
     try {
       // Запрос для получения альбомов пользователя
-      const albumsResponse = await publickClient.get(`albums/?userId=${userId}`)
+      const albumsResponse = await publickClient.get(`https://jsonplaceholder.typicode.com/albums/?userId=${userId}`)
       const albums = albumsResponse.data
 
       // Запрашиваем фото для каждого альбома
       const albumsWithPhotos = await Promise.all(
         albums.map(async (album) => {
-          const photosResponse = await publickClient.get(`photos/?albumId=${album.id}&_limit=5`)
+          const photosResponse = await publickClient.get(`https://jsonplaceholder.typicode.com/photos/?albumId=${album.id}&_limit=5`)
           return { ...album, photos: photosResponse.data }
         })
       )

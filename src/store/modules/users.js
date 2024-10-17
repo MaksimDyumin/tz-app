@@ -32,7 +32,7 @@ export const actions = {
   async getUsers({ commit }, userId) {
     try {
       const optionalString = userId || ''
-      const response = await publickClient.get(`users/${optionalString}`)
+      const response = await publickClient.get(`https://jsonplaceholder.typicode.com/users/${optionalString}`)
       commit('SET_USERS', response.data)
     } catch (error) {
       console.error(error)
