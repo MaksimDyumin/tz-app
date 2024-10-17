@@ -21,7 +21,7 @@
       <v-spacer></v-spacer>
 
       <v-btn
-        href="/"
+        @click="$router.push('/')"
         text
       >
         <span class="mr-2">Users</span>
